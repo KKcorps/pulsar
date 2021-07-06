@@ -84,7 +84,6 @@
                   <include>io.prometheus:*</include>
                   <include>com.github.ben-manes.caffeine:*</include>
                   <include>org.glassfish.jersey.*:*</include>
-                  <include>org.rocksdb:*</include>
                   <include>org.apache.bookkeeper:*</include>
                   <include>org.apache.zookeeper:*</include>
                   <include>jline:*</include>
@@ -104,6 +103,7 @@
                   <include>com.thoughtworks.paranamer:paranamer</include>
                   <include>org.apache.commons:commons-compress</include>
                   <include>org.tukaani:xz</include>
+                  <include>org.jvnet.*:*</include>
                 </includes>
               </artifactSet>
               <filters>
@@ -187,10 +187,6 @@
                 <relocation>
                   <pattern>org.apache.bookkeeper</pattern>
                   <shadedPattern>org.apache.pulsar.shade.org.apache.bookkeeper</shadedPattern>
-                </relocation>
-                <relocation>
-                  <pattern>org.rocksdb</pattern>
-                  <shadedPattern>org.apache.pulsar.shade.org.rocksdb</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>com.sun.jna</pattern>
@@ -306,6 +302,9 @@
                   <shadedPattern>org.apache.pulsar.shade.org.tukaani</shadedPattern>
                 </relocation>
               </relocations>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+              </transformers>
             </configuration>
           </execution>
         </executions>
